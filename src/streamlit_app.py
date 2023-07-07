@@ -22,11 +22,15 @@ streamlit_analytics.track()
 display.write_welcome()
 
 st.sidebar.write("## Paste In Your Summary :gear:")
-title = st.sidebar.text_input(label="Your current episode title [Optional]", value="Episode 180")
+title = st.sidebar.text_input(
+    label="Your current episode title [Optional]",
+    # value="Episode 20",
+)
 summary_text_area = st.sidebar.text_area(
     label="Summary of your episode",
     height=200,
-    value="""Welcome to our podcast episode in which we delve into a powerful address delivered by a high-ranking official to the resilient people of West Berlin. With guests such as the city's mayor, a well-respected symbol of Berlin's fighting spirit, and an American general known for his presence in moments of crisis, the speaker highlights the pivotal role this city plays in the global struggle between freedom and communism. The speaker passionately invokes the statement "Ich bin ein Berliner", equating themselves with the strength and determination of the Berliners, who have faced nearly two decades of constant challenges. They challenge naysayers and the misguided, inviting them to witness the realities of Berlin's life under siege, its stark contrast to the communist regime, and the people's indomitable spirit. The speaker emphasizes the importance of freedom, not just within the walls of Berlin or Germany, but globally, asserting that when one man is enslaved, all are not free. The oration culminates with a hopeful note of peace and justice for all, and a forward-looking vision of a united, free Berlin. As a free man, they proudly declare, "Ich bin ein Berliner". This episode is an exploration of the power of unity, resilience, and hope in the face of adversity.""",
+    # value="""Welcome to our podcast episode in which we delve into a powerful address delivered by a
+    # high-ranking official to the resilient people of West Berlin. With guests such as the city's mayor, a well-respected symbol of Berlin's fighting spirit, and an American general known for his presence in moments of crisis, the speaker highlights the pivotal role this city plays in the global struggle between freedom and communism. The speaker passionately invokes the statement "Ich bin ein Berliner", equating themselves with the strength and determination of the Berliners, who have faced nearly two decades of constant challenges. They challenge naysayers and the misguided, inviting them to witness the realities of Berlin's life under siege, its stark contrast to the communist regime, and the people's indomitable spirit. The speaker emphasizes the importance of freedom, not just within the walls of Berlin or Germany, but globally, asserting that when one man is enslaved, all are not free. The oration culminates with a hopeful note of peace and justice for all, and a forward-looking vision of a united, free Berlin. As a free man, they proudly declare, "Ich bin ein Berliner". This episode is an exploration of the power of unity, resilience, and hope in the face of adversity.""",
 )
 submit_btn = st.sidebar.button("Grade & Optimize 🚦✍️")
 display.render_follow_me()
