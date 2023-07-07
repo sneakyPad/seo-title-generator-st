@@ -4,7 +4,7 @@ version = "0.0.1"
 description = ""
 authors = ["sneakyPad"]
 readme = "README.md"
-packages = [{include = "seo_title_generator_st"}]
+#packages = [{include = "seo_title_generator_st"}]
 
 [tool.poetry.dependencies]
 python = "3.9.17"
