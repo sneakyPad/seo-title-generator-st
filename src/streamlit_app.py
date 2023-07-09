@@ -4,7 +4,7 @@ import streamlit_analytics
 import analyze
 import display
 import streamlit_ext
-from src import toml2json
+import toml2json
 
 llm_welcome = "Hi, I'm llama 🦙 and I will be processing your title in a second ..."
 
