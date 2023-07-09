@@ -4,6 +4,7 @@ import streamlit_analytics
 import analyze
 import display
 import streamlit_ext
+from src import toml2json
 
 llm_welcome = "Hi, I'm llama 🦙 and I will be processing your title in a second ..."
 
@@ -17,6 +18,7 @@ thinking_emojis = "1️⃣ 2️⃣ 3️⃣ 4️⃣ 5️⃣ 👋"
 grading_emojis = "🟢 🟠 🔴 👋"
 seo_emojis = "✍️ 💬 📝 ⚙️ 👋"
 
+toml2json.parse_firestore_toml_to_json()
 streamlit_analytics.track()
 
 display.write_welcome()
@@ -103,4 +105,7 @@ else:
             st.write(seo_optimized_title)
 
 display.render_more_apps()
-streamlit_analytics.stop_tracking(unsafe_password=st.secrets.tracking.pw)
+streamlit_analytics.stop_tracking(unsafe_password=st.secrets.tracking.pw,
+                                  firestore_key_file=".streamlit/fs_key.json",
+                                  firestore_collection_name="title-generator",
+                                  )
