@@ -13,10 +13,12 @@ inline_podgrader = mention(
 )
 
 inline_lemonspeak = mention(
-    label="LemonSpeak - Transcibe and Summarize", icon="🍋", url="https://bit.ly/lemonspeak", write=False
+    label="LemonSpeak - Transcribe and Summarize", icon="🍋", url="https://bit.ly/lemonspeak", write=False
 )
 
 
+def write_sample():
+    pass
 def write_welcome():
     page_title = "SEO Podcast Title Grader"
     layout = "centered"
@@ -28,20 +30,19 @@ def write_welcome():
 
     st.write(
         """
-      Welcome to the SEO Title Grader📈🎉! This tool analyzes your chosen title for an episode.
-      Provide your summary and the title of the episode and the title will be graded on basis of how 
-      well it is bein
+      Welcome to the Episode Title Grader📈🎉! This tool analyses the title you have chosen for an episode.
+      Enter your summary and the title of the episode, and an Large Language Model (LLM) 🤖 will rate  
+      the title  according to how suitable it is for SEO.
             
-      Additionally, an integrated Large Language Model (LLM) 🤖interprets these metrics and provides 
-      suggestions on how to improve the SEO value for a title.  🚀.
+      In addition, this app generates optimised SEO titles that you can use or be inspired by 🚀.
       
       """
     )
 
     st.write(
         f"""##### How it works⚙️\n
-        \n1. Head over to the left sidebar ⬅️ and paste in the summary of your episode and if you 
-        already have a title.\nNo summary? Generate one here: {inline_lemonspeak}
+        \n1. Head over to the left sidebar ⬅️ and add the summary of your episode and if you already have a title you can have it rated.
+        \nNo summary? Generate one here: {inline_lemonspeak}
 .""",
         unsafe_allow_html=True,
     )
