@@ -71,6 +71,10 @@ else:
     with open(file_path_example, "r") as f:
         summary = f.read()
     st.divider()
+    img_col1, img_col2, img_col3 = st.columns(3)
+    with img_col2:
+        st.image('resources/jfkennedyimg.png', caption='President John F. Kennedy delivers his '
+                                                       'famous speech "I am a Berliner"')
     st.write(
         f"<b>Here's an example of the speech, John F. Kennedy gave in Berlin 1963. We'll treat "
         f"this speech as if it were a podcast. </b>",
@@ -88,10 +92,8 @@ else:
         st.write(text_ask_to_grade)
     with st.chat_message("assistant"):
         display.simulate_ai_typing(llm_welcome)
-
-        with streamlit_ext.llm_spinner(text_thinking, grading_emojis):
-            result = analyze.analyze_title(title, example=True)
-            display.render_grade_result(result)
+        result = analyze.analyze_title(title, example=True)
+        display.render_grade_result(result)
 
     st.divider()
 
@@ -100,9 +102,8 @@ else:
         st.write(text_generate_titles)
 
     with st.chat_message("assistant"):
-        with streamlit_ext.llm_spinner(text=text_seo, emojis=grading_emojis):
-            seo_optimized_title = analyze.analyze_summary(summary, example=True)
-            st.write(seo_optimized_title)
+        seo_optimized_title = analyze.analyze_summary(summary, example=True)
+        st.write(seo_optimized_title)
 
 display.render_more_apps()
 streamlit_analytics.stop_tracking(unsafe_password=st.secrets.tracking.pw,
