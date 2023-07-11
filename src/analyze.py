@@ -1,3 +1,4 @@
+from json import JSONDecodeError
 from typing import Union
 import streamlit as st
 from annotated_text import annotated_text, annotation
@@ -22,7 +23,7 @@ def init_hugchat():
 chatbot = init_hugchat()
 
 
-@retry(Union[ModelOverloadedError, Exception], tries=2, delay=3)
+@retry(Union[ModelOverloadedError, JSONDecodeError], tries=2, delay=3)
 def ask_hugchat(prompt):
     id = chatbot.new_conversation()
     chatbot.change_conversation(id)
@@ -54,18 +55,7 @@ def analyze_title(podcast_title, example=False):
         """
         return pre_calculated
 
-    prompt = f"""
-    "You are a SEO expert for podcast for tiles. Kindly evaluate the following podcast episode title on 
-    several metrics.
-    
-    * 		Title Length: Is it evaluated low, medium, or high in terms of SEO value?
-    * 		Sentiment Analysis: Does this title have a negative, neutral, or positive sentiment?
-    * 		SEO Potential: Based on the terms used, would you anticipate low, medium, or high SEO potential?
-    * 		Emotional Appeal: Does this title evoke low, medium, or high emotional resonance?
-    * 		Readability: Is this title low, medium, or high in terms of readability?
-    
-    Here is the Title: '{podcast_title}'
-    """
+    prompt = f'{st.secrets.prompts.grade_title} {podcast_title}'
     answer = ask_hugchat(prompt)
     return answer
 
