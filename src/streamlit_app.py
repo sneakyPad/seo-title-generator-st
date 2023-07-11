@@ -63,6 +63,10 @@ if submit_btn:
                 st.write(seo_optimized_title)
 
             time.sleep(0.1)
+    else:
+        st.markdown("## SEO Optimized Titles", unsafe_allow_html=True)
+        st.warning('Please provide a summary of your episode to generate optimised title '
+                   'alternatives.', icon='⚠️')
     st.balloons()
     display.render_subscribe_button()
 
@@ -71,10 +75,10 @@ else:
     with open(file_path_example, "r") as f:
         summary = f.read()
     st.divider()
-    img_col1, img_col2, img_col3 = st.columns(3)
-    with img_col2:
-        st.image('resources/jfkennedyimg.png', caption='President John F. Kennedy delivers his '
-                                                       'famous speech "I am a Berliner"')
+    # img_col1, img_col2, img_col3 = st.columns(3)
+    # with img_col2:
+    #     st.image('resources/jfkennedyimg.png', caption='President John F. Kennedy delivers his '
+    #                                                    'famous speech "I am a Berliner"')
     st.write(
         f"<b>Here's an example of the speech, John F. Kennedy gave in Berlin 1963. We'll treat "
         f"this speech as if it were a podcast. </b>",

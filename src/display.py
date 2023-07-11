@@ -24,15 +24,17 @@ def write_welcome():
     layout = "centered"
 
     st.markdown(f"<h1 style='text-align: center;'>{page_title} 🚦✍️</h1>", unsafe_allow_html=True)
-    st.markdown(f"<h3 style='text-align: center'> Get your Episode Title Graded </h3>", unsafe_allow_html=True)
+    st.markdown(f"<h3 style='text-align: center'> Get The Title Of Your Latest Episode Graded"
+                f"</h3>",
+                unsafe_allow_html=True)
 
     st.divider()
 
     st.write(
         """
-      Welcome to the Episode Title Grader📈🎉! This tool analyses the title you have chosen for an episode.
+      Welcome to the Podcast Title Grader📈🎉! This tool analyses the title you have chosen for an episode.
       Enter your summary and the title of the episode, and an Large Language Model (LLM) 🤖 will rate  
-      the title  according to how suitable it is for SEO.
+      the title according to how suitable it is for SEO.
             
       In addition, this app generates optimised SEO titles that you can use or be inspired by 🚀.
       
