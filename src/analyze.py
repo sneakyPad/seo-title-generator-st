@@ -8,6 +8,54 @@ from hugchat.login import Login
 from retry import retry
 from streamlit_extras.mention import mention
 
+import fasttext
+
+
+language_dict = {
+    'ZH': 'Chinese',
+    'ES': 'Spanish',
+    'EN': 'English',
+    'HI': 'Hindi',
+    'AR': 'Arabic',
+    'PT': 'Portuguese',
+    'BN': 'Bengali',
+    'RU': 'Russian',
+    'JA': 'Japanese',
+    'PA': 'Punjabi',
+    'DE': 'German',
+    'JW': 'Javanese',
+    'TE': 'Telugu',
+    'MR': 'Marathi',
+    'TA': 'Tamil',
+    'TR': 'Turkish',
+    'KO': 'Korean',
+    'FR': 'French',
+    'IT': 'Italian',
+    'TH': 'Thai',
+    'NL': 'Dutch',
+    'PL': 'Polish',
+    'RO': 'Romanian',
+    'EL': 'Greek',
+    'HU': 'Hungarian',
+    'SV': 'Swedish',
+    'DA': 'Danish',
+    'FI': 'Finnish',
+    'NO': 'Norwegian',
+    'CS': 'Czech',
+    'SK': 'Slovak'
+}
+
+
+
+def detect_language(text):
+    # load the pre-trained model
+    model = fasttext.load_model('resources/lid.176.ftz')
+    predictions = model.predict(text)
+    language_code: str = predictions[0][0].replace("__label__", "")
+    print(language_code)  # Output: 'en'
+    language = language_dict.get(language_code.upper(), language_code)
+    print(language)  # Output: 'en'
+    return language
 
 def init_hugchat():
     # Log in to huggingface and grant authorization to huggingchat
@@ -25,19 +73,24 @@ chatbot = init_hugchat()
 
 @retry(Union[ModelOverloadedError, JSONDecodeError], tries=2, delay=3)
 def ask_hugchat(prompt):
-    id = chatbot.new_conversation()
-    chatbot.change_conversation(id)
+    try:
+        id = chatbot.new_conversation()
+        chatbot.change_conversation(id)
 
-    llm_answer = chatbot.chat(
-        prompt,
-        is_retry=True,
-        retry_count=10,
-        temperature=0.05,
-        truncate=2048,
-        use_cache=False,
-    )
-    # print(llm_answer)
-    return llm_answer
+        llm_answer = chatbot.chat(
+            prompt,
+            is_retry=True,
+            retry_count=10,
+            temperature=0.05,
+            truncate=2048,
+            use_cache=False,
+        )
+        # print(llm_answer)
+        return llm_answer
+    except Exception as e:
+        print(f'Exception: {e}')
+        raise
+
 
 
 def analyze_title(podcast_title, example=False):
@@ -55,8 +108,11 @@ def analyze_title(podcast_title, example=False):
         """
         return pre_calculated
 
-    prompt = f'{st.secrets.prompts.grade_title} {podcast_title}'
-    answer = ask_hugchat(prompt)
+    language = detect_language(podcast_title)
+    prompt: str = st.secrets.prompts.grade_title
+    formatted_prompt = prompt.format(language=language, title=podcast_title)
+    # prompt = f'{st.secrets.prompts.grade_title} {podcast_title}'
+    answer = ask_hugchat(formatted_prompt)
     return answer
 
 
@@ -74,6 +130,9 @@ def analyze_summary(summary, example=False):
         """
         return pre_calculated
 
-    prompt = f"{st.secrets.prompts.llama_prompt} {summary}"
-    answer = ask_hugchat(prompt)
+    language = detect_language(summary)
+    prompt: str = st.secrets.prompts.llama_prompt
+    formatted_prompt = prompt.format(language=language, content=summary)
+    # prompt = f"{st.secrets.prompts.llama_prompt} {summary}"
+    answer = ask_hugchat(formatted_prompt)
     return answer
