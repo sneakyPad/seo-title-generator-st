@@ -20,7 +20,7 @@ inline_lemonspeak = mention(
 def write_sample():
     pass
 def write_welcome():
-    page_title = "SEO Podcast Title Grader"
+    page_title = "Podcast Title Grader"
     layout = "centered"
 
     st.markdown(f"<h1 style='text-align: center;'>{page_title} 🚦✍️</h1>", unsafe_allow_html=True)
