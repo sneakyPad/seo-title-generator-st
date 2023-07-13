@@ -19,8 +19,8 @@ grading_emojis = "🟢 🟠 🔴 👋"
 seo_emojis = "✍️ 💬 📝 ⚙️ 👋"
 
 toml2json.parse_firestore_toml_to_json()
-streamlit_analytics.track()
 
+streamlit_analytics.start_tracking()
 display.write_welcome()
 
 st.sidebar.write("## Paste In Your Summary :gear:")
