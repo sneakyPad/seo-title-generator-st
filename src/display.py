@@ -228,8 +228,8 @@ def render_follow_me():
         write=False,
     )
 
-    st.sidebar.divider()
-    st.sidebar.write(
+    st.divider()
+    st.write(
         f"Follow me on: {inline_twitter} {inline_linkedin} {inline_substack}",
         unsafe_allow_html=True,
     )
