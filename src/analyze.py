@@ -92,6 +92,11 @@ def ask_hugchat(prompt):
         print(f'Exception: {e}')
         raise Exception
 
+def clean_text(text: str):
+    text = text.replace("\n", ' ')
+    text = text[:2000]
+    return text
+
 
 
 def analyze_title(podcast_title, example=False):
@@ -110,6 +115,7 @@ def analyze_title(podcast_title, example=False):
             """
             return pre_calculated
 
+        podcast_title = clean_text(podcast_title)
         language = detect_language(podcast_title)
         prompt: str = st.secrets.prompts.grade_title
         formatted_prompt = prompt.format(language=language, title=podcast_title)
@@ -120,7 +126,7 @@ def analyze_title(podcast_title, example=False):
         print(f'Exception: {e}')
         st.warning(f'We are currently experiencing high demand - please try again in a few seconds', icon='🟠')
 
-def analyze_summary(summary, example=False):
+def analyze_summary(summary: str, example=False):
     try:
         if example:
             pre_calculated = """
@@ -135,6 +141,7 @@ def analyze_summary(summary, example=False):
             """
             return pre_calculated
 
+        summary = clean_text(summary)
         language = detect_language(summary)
         prompt: str = st.secrets.prompts.llama_prompt
         formatted_prompt = prompt.format(language=language, content=summary)
