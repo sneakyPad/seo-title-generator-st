@@ -13,9 +13,16 @@ inline_podgrader = mention(
 )
 
 inline_lemonspeak = mention(
-    label="LemonSpeak - Transcribe and Summarize", icon="🍋", url="https://bit.ly/lemonspeak", write=False
+    label="LemonSpeak - Transcribe and Summarize", icon="🍋", url="https://bit.ly/lemonspeak",
+    write=False,
 )
 
+inline_shownotes = mention(
+    label="Show Notes Generator - Automate Your Show Notes Creation",
+    icon="🎭",
+    url="https://bit.ly/show-notes-st",
+    write=False
+)
 
 def write_sample():
     pass
@@ -202,7 +209,7 @@ def render_more_apps():
     st.divider()
     st.markdown(f"#### Pssst! 🤫", unsafe_allow_html=True)
     st.write(
-        f"Here are more free apps for you 🥳! {inline_lemonspeak} {inline_podgrader} ",
+        f"Here are more free apps for you 🥳! {inline_lemonspeak} {inline_podgrader} {inline_shownotes}",
         unsafe_allow_html=True,
     )
 
