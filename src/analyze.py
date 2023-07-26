@@ -62,7 +62,7 @@ def init_hugchat():
     sign = Login(st.secrets.pw.hf_email, st.secrets.pw.hf_key)
     cookies = sign.login()
     # Save cookies to usercookies/<email>.json
-    sign.saveCookiesToDir()
+    sign.saveCookiesToDir('./cookies')
     # Create a ChatBot
     chatbot = hugchat.ChatBot(cookies=cookies.get_dict())  # or cookie_path="usercookies/<email>.json"
     return chatbot
