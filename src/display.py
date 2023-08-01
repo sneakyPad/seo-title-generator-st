@@ -8,19 +8,26 @@ import time
 inline_podgrader = mention(
     label="Podcast Grader - An Audio Quality Grader",
     icon="🚦",  # Twitter is also featured!
-    url="https://bit.ly/podcast-grader",
+    url="https://lemonspeak.com/product-podcast-grader",
     write=False,
 )
 
 inline_lemonspeak = mention(
-    label="LemonSpeak - Transcribe and Summarize", icon="🍋", url="https://bit.ly/lemonspeak",
+    label="LemonSpeak - Transcribe and Summarize", icon="🍋", url="https://lemonspeak.com/product-lemonspeak",
     write=False,
 )
 
 inline_shownotes = mention(
     label="Show Notes Generator - Automate Your Show Notes Creation",
     icon="🎭",
-    url="https://bit.ly/show-notes-st",
+    url="https://lemonspeak.com/product-show-notes-generator",
+    write=False
+)
+
+inline_social_media_posts = mention(
+    label="Write My Social Media Posts - Create Articles and Tweets for Your Episode",
+    icon="🐰",
+    url="https://lemonspeak.com/product-social-media-posts",
     write=False
 )
 
@@ -209,7 +216,7 @@ def render_more_apps():
     st.divider()
     st.markdown(f"#### Pssst! 🤫", unsafe_allow_html=True)
     st.write(
-        f"Here are more free apps for you 🥳! {inline_lemonspeak} {inline_podgrader} {inline_shownotes}",
+        f"Here are more free apps for you 🥳! {inline_lemonspeak} {inline_podgrader} {inline_shownotes} {inline_social_media_posts}",
         unsafe_allow_html=True,
     )
 
