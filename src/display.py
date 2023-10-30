@@ -54,6 +54,10 @@ def write_welcome():
       
       """
     )
+    st.success(
+        "Over the past months many podcasters tried out my Streamlit apps around Lemonspeak. I have moved the service to [lemonspeak.com](https://lemonspeak.com). I'm happy to see you there! 🪄🚀🎉🥳")
+    st.stop()
+
 
     st.write(
         f"""##### How it works⚙️\n
@@ -62,9 +66,7 @@ def write_welcome():
 .""",
         unsafe_allow_html=True,
     )
-    st.success(
-        "Over the past months many podcasters tried out my Streamlit apps around Lemonspeak. I have moved the service to [lemonspeak.com](https://lemonspeak.com). I'm happy to see you there! 🪄🚀🎉🥳")
-    st.stop()
+
 
 def render_subscribe_button(sidebar: bool = False):
     subscribe_id = "subscribe"
