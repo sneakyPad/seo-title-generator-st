@@ -68,8 +68,7 @@ def init_hugchat():
     return chatbot
 
 
-chatbot = init_hugchat()
-
+# chatbot = init_hugchat() #TODO Add this line back to work properly
 
 # @retry((ModelOverloadedError, JSONDecodeError), tries=2, delay=3)
 @retry(tries=3, delay=3)
